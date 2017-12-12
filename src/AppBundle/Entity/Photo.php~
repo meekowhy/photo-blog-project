@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Vich\UploaderBundle\Entity\File as EmbeddedFile;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Photo
@@ -24,12 +25,19 @@ class Photo
      */
     private $id;
 
-    // ..... other fields
 
     /**
-     * NOTE: This is not a mapped field of entity metadata, just a simple property.
-     *
-     * @Vich\UploadableField(mapping="photo_image", fileNameProperty="imageName", size="imageSize")
+     * @ORM\ManyToOne(targetEntity="Gallery", inversedBy="photos")
+     * @ORM\JoinColumn(name="gallery_id", referencedColumnName="id")
+     */
+    private $gallery;
+
+
+    /**
+     * @Assert\Image(
+     *     maxSize="100000"
+     * )
+     * @Vich\UploadableField(mapping="photo_image", fileNameProperty="imageName")
      *
      * @var File
      */
@@ -42,12 +50,6 @@ class Photo
      */
     private $imageName;
 
-    /**
-     * @ORM\Column(type="integer")
-     *
-     * @var integer
-     */
-    private $imageSize;
 
     /**
      * @ORM\Column(type="datetime")
@@ -108,24 +110,38 @@ class Photo
         return $this->imageName;
     }
 
+
     /**
-     * @param integer $imageSize
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set updatedAt
+     *
+     * @param \DateTime $updatedAt
      *
      * @return Photo
      */
-    public function setImageSize($imageSize)
+    public function setUpdatedAt($updatedAt)
     {
-        $this->imageSize = $imageSize;
+        $this->updatedAt = $updatedAt;
 
         return $this;
     }
 
     /**
-     * @return integer|null
+     * Get updatedAt
+     *
+     * @return \DateTime
      */
-    public function getImageSize()
+    public function getUpdatedAt()
     {
-        return $this->imageSize;
+        return $this->updatedAt;
     }
 }
-

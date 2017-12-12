@@ -46,7 +46,7 @@ class DefaultController extends Controller
         return $this->render('AppBundle:default:upload.html.twig', array(
             'form' => $form->createView(),
         ));
-        
+
     }
 
 

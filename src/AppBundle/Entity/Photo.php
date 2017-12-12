@@ -25,7 +25,13 @@ class Photo
      */
     private $id;
 
-    // ..... other fields
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Gallery", inversedBy="photos")
+     * @ORM\JoinColumn(name="gallery_id", referencedColumnName="id")
+     */
+    private $gallery;
+
 
     /**
      * @Assert\Image(
@@ -137,5 +143,29 @@ class Photo
     public function getUpdatedAt()
     {
         return $this->updatedAt;
+    }
+
+    /**
+     * Set gallery
+     *
+     * @param \AppBundle\Entity\Gallery $gallery
+     *
+     * @return Photo
+     */
+    public function setGallery(\AppBundle\Entity\Gallery $gallery = null)
+    {
+        $this->gallery = $gallery;
+
+        return $this;
+    }
+
+    /**
+     * Get gallery
+     *
+     * @return \AppBundle\Entity\Gallery
+     */
+    public function getGallery()
+    {
+        return $this->gallery;
     }
 }
