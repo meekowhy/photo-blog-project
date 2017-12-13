@@ -5,7 +5,9 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Photo;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\BrowserKit\Response;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Photo controller.
@@ -98,24 +100,43 @@ class PhotoController extends Controller
         ));
     }
 
+//    /**
+//     * Deletes a photo entity.
+//     *
+//     * @Route("/{id}", name="photo_delete")
+//     * @Method("DELETE")
+//     */
+//    public function deleteAction(Request $request, Photo $photo)
+//    {
+//        $form = $this->createDeleteForm($photo);
+//        $form->handleRequest($request);
+//
+//        if ($form->isSubmitted() && $form->isValid()) {
+//            $em = $this->getDoctrine()->getManager();
+//            $em->remove($photo);
+//            $em->flush();
+//        }
+//
+//        return $this->redirectToRoute('photo_index');
+//    }
+
+
     /**
-     * Deletes a photo entity.
-     *
-     * @Route("/{id}", name="photo_delete")
-     * @Method("DELETE")
+     * @param $id
+     * @Route("/delete/{id}", name="photo_delete")
      */
-    public function deleteAction(Request $request, Photo $photo)
-    {
-        $form = $this->createDeleteForm($photo);
-        $form->handleRequest($request);
+    public function delete2Action($id, Request $request) {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Photo');
+        $photoToDelete = $repository->find($id);
+        $em->remove($photoToDelete);
+        $em->flush();
+        
+        $referer = $request
+            ->headers
+            ->get('referer');
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->remove($photo);
-            $em->flush();
-        }
-
-        return $this->redirectToRoute('photo_index');
+        return $this->redirect($referer);
     }
 
     /**

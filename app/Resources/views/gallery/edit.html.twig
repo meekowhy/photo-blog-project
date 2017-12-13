@@ -1,6 +1,7 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
 {% block top %}
+    {#temporary placement#}
     <style>
         img {
             border: 1px solid #ddd;
@@ -19,11 +20,15 @@
             display: inline;
         }
     </style>
+
 <div class="container text-center">
 
     <ul>
         {% for photo in gallery.photos %}
-            <li><img src="{{ asset('img/uploads/' ~ photo.imageName) }}" alt=""></li>
+            <li>
+                <img src="{{ asset('img/uploads/' ~ photo.imageName) }}" alt="">
+                <a href="{{ path('photo_delete', {'id' : photo.id}) }}"><button>X</button></a>
+            </li>
         {% endfor %}
     </ul>
 
