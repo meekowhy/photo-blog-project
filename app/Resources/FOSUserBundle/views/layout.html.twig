@@ -60,6 +60,8 @@
     </div>
 </header>
 <!-- END: header -->
+{% block top %}
+
 
 <div class="probootstrap-section">
     <div class="container text-center">
@@ -69,6 +71,19 @@
                 <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
             </div>
         </div>
+
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="row probootstrap-gutter16">
+                <div class="col-md-12 probootstrap-animate" data-animate-effect="fadeIn">
+                    <a href="single-page.html" class="img-bg" style="background-image: url({{ asset('img/plus-button-74100.png')}});background-size:40%;">
+                        <div class="probootstrap-photo-details">
+                            <h2 style="color:black;">Add new gallery</h2>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+
 
         <div class="row probootstrap-gutter16">
             <div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">
@@ -134,9 +149,10 @@
                 </a>
             </div>
         </div>
-
     </div>
 </div>
+
+
 
 <footer class="probootstrap-footer" role="contentinfo">
     <div class="container">
@@ -153,7 +169,7 @@
         </div>
     </div>
 </footer>
-
+{% endblock top %}
 <div class="gototop js-top">
     <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
 </div>

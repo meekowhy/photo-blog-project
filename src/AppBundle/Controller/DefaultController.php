@@ -3,6 +3,8 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Photo;
+use AppBundle\Entity\Gallery;
+use AppBundle\Form\GalleryType;
 use AppBundle\Form\PhotoType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -39,7 +41,6 @@ class DefaultController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($photo);
             $em->flush();
-
             return new Response('ok');
         }
 
@@ -49,6 +50,25 @@ class DefaultController extends Controller
 
     }
 
+    /**
+     * @Route ("/gallery/new/")
+     */
+    public function createGalleryAction(Request $request) {
+        $gallery = new Gallery();
+        $form = $this->createForm(GalleryType::class, $gallery);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($gallery);
+            $em->flush();
+            return new Response('ok');
+        }
+
+        return $this->render('AppBundle:default:create_gallery.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
 
     protected function makeForm() {
 

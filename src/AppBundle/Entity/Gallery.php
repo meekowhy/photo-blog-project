@@ -21,6 +21,19 @@ class Gallery
      */
     private $id;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     *
+     * @var string
+     */
+    private $name;
+
+    /**
+     * @ORM\Column(type="string")
+     *
+     * @var string
+     */
+    private $description;
 
     /**
      * @ORM\OneToMany(targetEntity="Photo", mappedBy="gallery")
@@ -77,5 +90,53 @@ class Gallery
     public function getPhotos()
     {
         return $this->photos;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Gallery
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return Gallery
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }
