@@ -50,25 +50,25 @@ class DefaultController extends Controller
 
     }
 
-    /**
-     * @Route ("/gallery/new/")
-     */
-    public function createGalleryAction(Request $request) {
-        $gallery = new Gallery();
-        $form = $this->createForm(GalleryType::class, $gallery);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($gallery);
-            $em->flush();
-            return new Response('ok');
-        }
-
-        return $this->render('AppBundle:default:create_gallery.html.twig', array(
-            'form' => $form->createView()
-        ));
-    }
+//    /**
+//     * @Route ("/gallery/new/")
+//     */
+//    public function createGalleryAction(Request $request) {
+//        $gallery = new Gallery();
+//        $form = $this->createForm(GalleryType::class, $gallery);
+//
+//        $form->handleRequest($request);
+//        if ($form->isSubmitted() && $form->isValid()) {
+//            $em = $this->getDoctrine()->getManager();
+//            $em->persist($gallery);
+//            $em->flush();
+//            return new Response('ok');
+//        }
+//
+//        return $this->render('AppBundle:default:create_gallery.html.twig', array(
+//            'form' => $form->createView()
+//        ));
+//    }
 
     protected function makeForm() {
 

@@ -75,7 +75,7 @@
         {% if is_granted('ROLE_ADMIN') %}
             <div class="row probootstrap-gutter16">
                 <div class="col-md-12 probootstrap-animate" data-animate-effect="fadeIn">
-                    <a href="single-page.html" class="img-bg" style="background-image: url({{ asset('img/plus-button-74100.png')}});background-size:40%;">
+                    <a href="{{ path('gallery_new') }}" class="img-bg" style="background-image: url({{ asset('img/plus-button-74100.png')}});background-size:40%;">
                         <div class="probootstrap-photo-details">
                             <h2 style="color:black;">Add new gallery</h2>
                         </div>

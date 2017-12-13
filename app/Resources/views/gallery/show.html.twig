@@ -1,31 +1,31 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Photo</h1>
+    <h1>Gallery</h1>
 
     <table>
         <tbody>
             <tr>
                 <th>Id</th>
-                <td>{{ photo.id }}</td>
+                <td>{{ gallery.id }}</td>
             </tr>
             <tr>
-                <th>Imagename</th>
-                <td>{{ photo.imageName }}</td>
+                <th>Name</th>
+                <td>{{ gallery.name }}</td>
             </tr>
             <tr>
-                <th>Updatedat</th>
-                <td>{% if photo.updatedAt %}{{ photo.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <th>Description</th>
+                <td>{{ gallery.description }}</td>
             </tr>
         </tbody>
     </table>
 
     <ul>
         <li>
-            <a href="{{ path('photo_index') }}">Back to the list</a>
+            <a href="{{ path('gallery_index') }}">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('photo_edit', { 'id': photo.id }) }}">Edit</a>
+            <a href="{{ path('gallery_edit', { 'id': gallery.id }) }}">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}

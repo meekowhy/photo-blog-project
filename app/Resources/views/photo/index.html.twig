@@ -8,7 +8,6 @@
             <tr>
                 <th>Id</th>
                 <th>Imagename</th>
-                <th>Imagesize</th>
                 <th>Updatedat</th>
                 <th>Actions</th>
             </tr>
@@ -18,7 +17,6 @@
             <tr>
                 <td><a href="{{ path('photo_show', { 'id': photo.id }) }}">{{ photo.id }}</a></td>
                 <td>{{ photo.imageName }}</td>
-                <td>{{ photo.imageSize }}</td>
                 <td>{% if photo.updatedAt %}{{ photo.updatedAt|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>
                     <ul>

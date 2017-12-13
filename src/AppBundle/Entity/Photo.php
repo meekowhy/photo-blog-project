@@ -35,7 +35,7 @@ class Photo
 
     /**
      * @Assert\Image(
-     *     maxSize="100000"
+     *     maxSize="10000000"
      * )
      * @Vich\UploadableField(mapping="photo_image", fileNameProperty="imageName")
      *

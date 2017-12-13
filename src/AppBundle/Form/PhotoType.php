@@ -4,13 +4,10 @@ namespace AppBundle\Form;
 
 use AppBundle\Entity\Photo;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Vich\UploaderBundle\Form\Type\VichFileType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Vich\UploaderBundle\Form\Type\VichImageType;
-
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 class PhotoType extends AbstractType
 {
 
@@ -21,10 +18,7 @@ class PhotoType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('imageFile', VichImageType::class, [
-            'required' => false
-        ])
-            ->add('save',SubmitType::class,['label'=>'save photo']);
+        $builder->add('imageFile', FileType::class, array('label' => 'Add new photo'));
     }
 
     /**
