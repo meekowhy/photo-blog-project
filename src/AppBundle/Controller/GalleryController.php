@@ -137,6 +137,16 @@ class GalleryController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $em = $this->getDoctrine()->getManager();
+            $photosToDelete = $gallery->getPhotos();
+
+            foreach ($photosToDelete as $photoToDelete) {
+                $path = __DIR__ . '/../../../web/img/uploads/' . $photoToDelete->getImageName();
+                if (file_exists($path)) {
+                    unlink($path);
+                }
+                $em->remove($photoToDelete);
+            }
+
             $em->remove($gallery);
             $em->flush();
         }

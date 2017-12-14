@@ -13,13 +13,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\HttpFoundation\Response;
 
-class DefaultController extends Controller
+class MainController extends Controller
 {
     /**
      * @Route("/", name="homepage")
      */
     public function indexAction(Request $request)
     {
+        $em = $this->getDoctrine()->getManager();
+        $repository = $em->getRepository('AppBundle:Gallery');
+        $galleries = $repository->findAll();
+
         // replace this example code with whatever you need
         return $this->render('AppBundle:default:index.html.twig', [
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
@@ -27,28 +31,27 @@ class DefaultController extends Controller
     }
 
 
-    /**
-     * @Route ("/upload/")
-     */
-    public function uploadAction(Request $request)
-    {
-
-        $photo = new Photo();
-        $form = $this->createForm(PhotoType::class, $photo);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($photo);
-            $em->flush();
-            return new Response('ok');
-        }
-
-        return $this->render('AppBundle:default:upload.html.twig', array(
-            'form' => $form->createView(),
-        ));
-
-    }
+//    /**
+//     * @Route ("/upload/")
+//     */
+//    public function uploadAction(Request $request)
+//    {
+//
+//        $photo = new Photo();
+//        $form = $this->createForm(PhotoType::class, $photo);
+//
+//        $form->handleRequest($request);
+//        if ($form->isSubmitted() && $form->isValid()) {
+//            $em = $this->getDoctrine()->getManager();
+//            $em->persist($photo);
+//            $em->flush();
+//            return new Response('ok');
+//        }
+//
+//        return $this->render('AppBundle:default:upload.html.twig', array(
+//            'form' => $form->createView(),
+//        ));
+//    }
 
 //    /**
 //     * @Route ("/gallery/new/")
@@ -70,16 +73,16 @@ class DefaultController extends Controller
 //        ));
 //    }
 
-    protected function makeForm() {
-
-        $form = $this->createFormBuilder(new Photo());
-        $form
-            ->setMethod('POST')
-            ->add('imageFile', FileType::class, array('label' => 'photo (img file)'))
-            ->add('save',SubmitType::class,['label'=>'save photo']);
-
-        return $form->getForm();
-    }
+//    protected function makeForm() {
+//
+//        $form = $this->createFormBuilder(new Photo());
+//        $form
+//            ->setMethod('POST')
+//            ->add('imageFile', FileType::class, array('label' => 'photo (img file)'))
+//            ->add('save',SubmitType::class,['label'=>'save photo']);
+//
+//        return $form->getForm();
+//    }
 
 
 

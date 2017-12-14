@@ -129,9 +129,16 @@ class PhotoController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('AppBundle:Photo');
         $photoToDelete = $repository->find($id);
+
+        $path = __DIR__ . '/../../../web/img/uploads/' . $photoToDelete->getImageName();
+
+        if (file_exists($path)) {
+            unlink($path);
+        }
+
         $em->remove($photoToDelete);
         $em->flush();
-        
+
         $referer = $request
             ->headers
             ->get('referer');
