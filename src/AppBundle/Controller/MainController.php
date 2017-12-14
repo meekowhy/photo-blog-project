@@ -21,12 +21,12 @@ class MainController extends Controller
     public function indexAction(Request $request)
     {
         $em = $this->getDoctrine()->getManager();
-        $repository = $em->getRepository('AppBundle:Gallery');
-        $galleries = $repository->findAll();
+        $galleries = $em->getRepository('AppBundle:Gallery')->findAll();
 
         // replace this example code with whatever you need
         return $this->render('AppBundle:default:index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
+            'galleries' => $galleries
+//            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
         ]);
     }
 

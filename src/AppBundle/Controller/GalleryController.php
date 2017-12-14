@@ -145,9 +145,11 @@ class GalleryController extends Controller
                     unlink($path);
                 }
                 $em->remove($photoToDelete);
+                $em->flush();
             }
-
             $em->remove($gallery);
+
+
             $em->flush();
         }
 
