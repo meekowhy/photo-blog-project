@@ -1,1 +1,42 @@
 {% extends "@FOSUser/layout.html.twig" %}
+
+{% block top %}
+    <div class="probootstrap-section">
+        <div class="container text-center">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 mb40">
+                    <h2>I'm a photographer</h2>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                </div>
+            </div>
+
+            {% if is_granted('ROLE_ADMIN') %}
+                <div class="row probootstrap-gutter16">
+                    <div class="col-md-12 probootstrap-animate" data-animate-effect="fadeIn">
+                        <a href="{{ path('gallery_new') }}" class="img-bg" style="background-image: url({{ asset('img/plus-button-74100.png')}});background-size:40%;">
+                            <div class="probootstrap-photo-details">
+                                <h2 style="color:black;">Add new gallery</h2>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+
+
+            {% for gallery in galleries %}
+                {% if gallery.photos.count %}
+                    <div class="row probootstrap-gutter16">
+                        <div class="col-md-12 probootstrap-animate" data-animate-effect="fadeIn">
+                            <a href="{{ path('gallery_show', {'id':gallery.id} ) }}" class="img-bg" style="background-image: url({{ asset('img/uploads/' ~ gallery.photos[0].imageName) }});">
+                                <div class="probootstrap-photo-details">
+                                    <h2>{{ gallery.name }}</h2>
+                                    {#<p></p>#}
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock top%}

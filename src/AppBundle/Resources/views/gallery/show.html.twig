@@ -1,0 +1,40 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block top %}
+
+    <div class="probootstrap-section">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 mb40 text-center">
+                    <h2>Nature Photos</h2>
+                    <p>Posted  on September 3, 2017</p>
+                </div>
+                <div class="col-md-6">
+                    <p>Far far away, behind the word mountains, far from the countries <a href="#">Vokalia and Consonantia</a>, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean. Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small.</p>
+                </div>
+                <div class="col-md-6">
+                    <p>Even the all-powerful Pointing has no control about the blind texts it is an almost unorthographic life One day however a small line of blind text by the name of Lorem Ipsum decided to leave for the far World of Grammar.</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    {% for photo in gallery.photos %}
+                    {% if loop.index%2 == 0  %}
+                        <p><a href="{{ asset('img/uploads/' ~ photo.imageName) }}" class="image-popup"><img src="{{ asset('img/uploads/' ~ photo.imageName) }}" class="img-responsive" alt=""></a></p>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+                <div class="col-md-6">
+                    {% for photo in gallery.photos %}
+                        {% if not loop.index%2 == 0  %}
+                            <p><a href="{{ asset('img/uploads/' ~ photo.imageName) }}" class="image-popup"><img src="{{ asset('img/uploads/' ~ photo.imageName) }}" class="img-responsive" alt=""></a></p>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

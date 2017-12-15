@@ -27,14 +27,14 @@ class GalleryController extends Controller
 
         $galleries = $em->getRepository('AppBundle:Gallery')->findAll();
 
-        return $this->render('gallery/index.html.twig', array(
+        return $this->render('AppBundle:gallery:index.html.twig', array(
             'galleries' => $galleries,
         ));
     }
 
     /**
      * Creates a new gallery entity.
-     *
+
      * @Route("/new", name="gallery_new")
      * @Method({"GET", "POST"})
      */
@@ -53,7 +53,7 @@ class GalleryController extends Controller
             return $this->redirectToRoute('gallery_edit', array('id' => $gallery->getId()));
         }
 
-        return $this->render('gallery/new.html.twig', array(
+        return $this->render('AppBundle:gallery:new.html.twig', array(
             'gallery' => $gallery,
             'form' => $form->createView(),
         ));
@@ -68,12 +68,9 @@ class GalleryController extends Controller
      */
     public function showAction(Gallery $gallery)
     {
-        $deleteForm = $this->createDeleteForm($gallery);
+//        $deleteForm = $this->createDeleteForm($gallery);
 
-        return $this->render('gallery/show.html.twig', array(
-            'gallery' => $gallery,
-            'delete_form' => $deleteForm->createView(),
-        ));
+        return $this->render('AppBundle:gallery:show.html.twig', ['gallery'=>$gallery]);
     }
 
     /**
@@ -100,7 +97,7 @@ class GalleryController extends Controller
             $em->persist($photo);
             $em->flush();
 
-//            return $this->redirectToRoute('gallery_edit', array('id' => $photo->getId()));
+
             return $this->render('gallery/edit.html.twig', array(
                 'gallery' => $gallery,
                 'edit_form' => $editForm->createView(),
@@ -116,7 +113,7 @@ class GalleryController extends Controller
             return $this->redirectToRoute('gallery_edit', array('id' => $gallery->getId()));
         }
 
-        return $this->render('gallery/edit.html.twig', array(
+        return $this->render('AppBundle:gallery:edit.html.twig', array(
             'gallery' => $gallery,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),

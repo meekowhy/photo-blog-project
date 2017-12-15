@@ -61,110 +61,9 @@
 </header>
 <!-- END: header -->
 {% block top %}
+
+{% endblock top %}
     
-<div class="probootstrap-section">
-    <div class="container text-center">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3 mb40">
-                <h2>I'm a photographer</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            </div>
-        </div>
-
-        {% if is_granted('ROLE_ADMIN') %}
-            <div class="row probootstrap-gutter16">
-                <div class="col-md-12 probootstrap-animate" data-animate-effect="fadeIn">
-                    <a href="{{ path('gallery_new') }}" class="img-bg" style="background-image: url({{ asset('img/plus-button-74100.png')}});background-size:40%;">
-                        <div class="probootstrap-photo-details">
-                            <h2 style="color:black;">Add new gallery</h2>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        {% endif %}
-
-
-        {% for gallery in galleries %}
-        {% if gallery.photos.count %}
-        <div class="row probootstrap-gutter16">
-            <div class="col-md-12 probootstrap-animate" data-animate-effect="fadeIn">
-                <a href="single-page.html" class="img-bg" style="background-image: url({{ asset('img/uploads/' ~ gallery.photos[0].imageName) }});">
-                    <div class="probootstrap-photo-details">
-                        <h2>{{ gallery.name }}</h2>
-                        {#<p></p>#}
-                    </div>
-                </a>
-            </div>
-        </div>
-        {% endif %}
-        {% endfor %}
-
-        {#<div class="row probootstrap-gutter16">#}
-            {#<div class="col-md-8 probootstrap-animate" data-animate-effect="fadeIn">#}
-                {#<a href="single-page.html" class="img-bg" style="background-image: url({{ asset('img/uploads/5a314a9a4ad23403573065.jpg')}});">#}
-                    {#<div class="probootstrap-photo-details">#}
-                        {#<h2>A turquoise colored sea</h2>#}
-                        {#<p>Landscape</p>#}
-                    {#</div>#}
-                {#</a>#}
-            {#</div>#}
-            {#<div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">#}
-                {#<a href="single-page.html" class="img-bg" style="background-image: url({{ asset('img/uploads/5a314a9a4ad23403573065.jpg')}});">#}
-                    {#<div class="probootstrap-photo-details">#}
-                        {#<h2>Frozen Mount</h2>#}
-                        {#<p>Landscape</p>#}
-                    {#</div>#}
-                {#</a>#}
-            {#</div>#}
-        {#</div>#}
-
-        {#<div class="row probootstrap-gutter16">#}
-            {#<div class="col-md-5 probootstrap-animate" data-animate-effect="fadeIn">#}
-                {#<a href="single-page.html" class="img-bg" style="background-image: url({{ asset('img/img_3.jpg')}});">#}
-                    {#<div class="probootstrap-photo-details">#}
-                        {#<h2>Earthly Clay</h2>#}
-                        {#<p>Landscape</p>#}
-                    {#</div>#}
-                {#</a>#}
-            {#</div>#}
-            {#<div class="col-md-3 probootstrap-animate" data-animate-effect="fadeIn">#}
-                {#<a href="single-page.html" class="img-bg" style="background-image: url({{ asset('img/img_5.jpg') }});">#}
-                    {#<div class="probootstrap-photo-details">#}
-                        {#<h2>Man Captured</h2>#}
-                        {#<p>Landscape</p>#}
-                    {#</div>#}
-                {#</a>#}
-            {#</div>#}
-            {#<div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">#}
-                {#<a href="single-page.html" class="img-bg" style="background-image: url({{ asset('img/img_4.jpg') }});">#}
-                    {#<div class="probootstrap-photo-details">#}
-                        {#<h2>Mountain with pines</h2>#}
-                        {#<p>Landscape</p>#}
-                    {#</div>#}
-                {#</a>#}
-            {#</div>#}
-        {#</div>#}
-
-        {#<div class="row probootstrap-gutter16">#}
-            {#<div class="col-md-8 probootstrap-animate" data-animate-effect="fadeIn">#}
-                {#<a href="single-page.html" class="img-bg" style="background-image: url({{ asset('img/img_7.jpg') }});">#}
-                    {#<div class="probootstrap-photo-details">#}
-                        {#<h2>Mountains</h2>#}
-                        {#<p>Landscape</p>#}
-                    {#</div>#}
-                {#</a>#}
-            {#</div>#}
-            {#<div class="col-md-4 probootstrap-animate" data-animate-effect="fadeIn">#}
-                {#<a href="single-page.html" class="img-bg" style="background-image: url({{ asset('img/img_6.jpg') }});">#}
-                    {#<div class="probootstrap-photo-details">#}
-                        {#<h2>Beautiful Sunset</h2>#}
-                        {#<p>Landscape</p>#}
-                    {#</div>#}
-                {#</a>#}
-            {#</div>#}
-        {#</div>#}
-    {#</div>#}
-{#</div>#}
 
 
 
@@ -183,7 +82,6 @@
         </div>
     </div>
 </footer>
-{% endblock top %}
 <div class="gototop js-top">
     <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
 </div>

@@ -11,14 +11,13 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 class PhotoType extends AbstractType
 {
 
-
     /**
      * @param FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('imageFile', FileType::class, array('label' => ' '));
+        $builder->add('imageFile', FileType::class, array('label' => 'Add new photo'));
     }
 
     /**
